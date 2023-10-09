@@ -3,7 +3,7 @@ import csv
 from Caller import get_aud_data
 import numpy as np
 
-path2 = "C:\\Users\\hkkas\\PycharmProjects\\HCLHackathon\\audioData\\audData.npy"
+path2 = "C:\\Users\\hkkas\\PycharmProjects\\MusicGeneration\\audioData\\audData.npy"
 
 
 def write():
@@ -17,3 +17,5 @@ def read():
     aud_data = np.load(path2)
     return aud_data
 
+
+print(read().shape)

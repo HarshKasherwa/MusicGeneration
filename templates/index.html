@@ -3,65 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text to Audio</title>
+    <title>Phrase and Audio Player</title>
 </head>
 <body>
-    <h1>Text to Audio</h1>
-
-    <!-- Form to input text -->
-    <form id="textInputForm">
-        <label for="inputText">Enter Text:</label>
-        <textarea id="inputText" name="inputText" required></textarea>
+    <h1>Music Generation from keywords like genre, tempo, music instruments etc. </h1>
+    <form method="POST" action="/submit">
+        <label for="phrase">Enter a phrase or keyword:</label>
+        <input type="text" id="phrase" name="phrase" required>
         <button type="submit">Submit</button>
     </form>
-
-    <div id="audioPlayerContainer" style="display: none;">
-        <audio controls id="audioPlayer">
-            Your browser does not support the audio element.
-        </audio>
-    </div>
-
-    <script>
-        const textInputForm = document.getElementById('textInputForm');
-        const audioPlayerContainer = document.getElementById('audioPlayerContainer');
-        const audioPlayer = document.getElementById('audioPlayer');
-
-        textInputForm.addEventListener('submit', (event) =  > {
-            event.preventDefault();
-
-            // Get the text input by the user
-            const inputText = document.getElementById('inputText').value;
-
-            // Send the text to the server
-            fetch('/synthesize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: inputText }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Create a Float32Array from the received audio data
-                const audioData = new Float32Array(data.audioData);
-
-                // Create an AudioBuffer from the audio data and sample rate
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const audioBuffer = audioContext.createBuffer(1, audioData.length, data.sampleRate);
-                audioBuffer.copyToChannel(audioData, 0);
-
-                // Set the audio player source and display it
-                const source = audioContext.createBufferSource();
-                source.buffer = audioBuffer;
-                source.connect(audioContext.destination);
-                source.start();
-
-                audioPlayer.style.display = 'block';
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
+    {% if submitted_phrase %}
+    <p>Entered phrase or keyword: {{ submitted_phrase }}</p>
+    <p> Generated Music</p>
+    {% endif %}
+    {% if audio_url %}
+    <audio controls>
+        <source src="{{ audio_url }}" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
 </body>
 </html>
