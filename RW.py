@@ -1,5 +1,3 @@
-import csv
-
 from Caller import get_aud_data
 import numpy as np
 
