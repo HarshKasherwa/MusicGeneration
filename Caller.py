@@ -1,10 +1,12 @@
 import torch
 from loadModel import load
 from genAudio import genaud
+import os
 
 
 def get_aud_data(input_string):
-    path = "C:\\Users\\hkkas\\PycharmProjects\\HCLHackathon\\models\\GenAudioModel.pkl"
+    model_path = os.getcwd()
+    model_path = os.path.join(model_path, "models", "Gen_audio_model.pkl")
     path2 = "C:\\Users\\hkkas\\Downloads\\GenAudioModel.pkl"
 
     # input = ["80s pop track with bassy drums and synth", "90s rock song with loud guitars and heavy drums"]

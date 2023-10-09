@@ -11,3 +11,6 @@ def download():
     path = os.path.join(path, model_name)
     with open(path, 'wb') as file:
         pickle.dump(model, file)
+
+
+download()

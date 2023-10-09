@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', submitted_phrase=None, audio_url=None)
+    return render_template('index3.html', submitted_phrase=None, audio_url=None)
 
 
 @app.route('/submit', methods=['POST'])
@@ -23,7 +23,7 @@ def submit():
     audio_filename = "audioFiles/" + file_name
     audio_url = url_for('static', filename=audio_filename)
 
-    return render_template('index.html', submitted_phrase=input_string, audio_url=audio_url)
+    return render_template('index3.html', submitted_phrase=input_string, audio_url=audio_url)
 
 
 if __name__ == '__main__':
