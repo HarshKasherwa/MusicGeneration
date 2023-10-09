@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Input Web App</title>
+</head>
+<body>
+    <h1>String Input Web App</h1>
+    <form id="inputForm">
+        <label for="inputText">Enter a String:</label>
+        <input type="text" id="inputText" name="inputText" required>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const inputText = document.getElementById('inputText').value;
+
+            // Send the input to the server using a fetch request
+            fetch('/api/echo?input=' + inputText)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('output').textContent = data.message + ' ' + data.input;
+                });
+        });
+    </script>
+</body>
+</html>
