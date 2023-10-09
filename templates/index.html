@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phrase and Audio Player</title>
+    <title>Music Generation </title>
 </head>
 <body>
     <h1>Music Generation from keywords like genre, tempo, music instruments etc. </h1>
@@ -21,6 +21,8 @@
         <source src="{{ audio_url }}" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
+    <br>
+    <a href="{{ audio_url }}" download="your_audio.mp3">Download Audio</a>
     {% endif %}
 </body>
 </html>
