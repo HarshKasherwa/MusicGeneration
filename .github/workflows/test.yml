@@ -1,0 +1,33 @@
+name: Update Prod Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+        path: ./music_gen
+
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install dependencies
+      run: |
+        ls -l
+        python -m venv venv
+        . venv/bin/activate
+        pip install wheel==0.38.4 
+        pip install setuptools==67.4.0
+        pip install python-minifier==2.8.0
+        pip install pyarmor==8.5.1
+        pip install pyminifier3==2.3.3
