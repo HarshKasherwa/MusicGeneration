@@ -39,6 +39,8 @@ jobs:
     - name: Install dependencies
       run: |
         ls -l
+        cd music_gen
+        ls -l
         python -m venv venv
         . venv/bin/activate
         pip install wheel==0.38.4 
